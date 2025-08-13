@@ -2,8 +2,29 @@
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
+  background-color: #eeeeee;
 }
 
 body {
   margin: 0;
+  padding: 20px;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  column-gap: 20px;
+}
+
+a {
+  text-decoration: none;
+  color: darkcyan;
+}
+
+a:hover {
+  color: #067676;
+}
+
+.active-link {
+  font-weight: bold;
 }
