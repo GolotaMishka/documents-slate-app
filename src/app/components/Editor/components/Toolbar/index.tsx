@@ -10,6 +10,7 @@ import {
   FileTextOutlined,
   CaretDownOutlined,
   HeartOutlined,
+  TableOutlined
 } from "@ant-design/icons";
 import styles from "./Toolbar.module.scss";
 import { Tooltip } from "antd";
@@ -109,6 +110,18 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
             onMouseDown={(event) => {
               event.preventDefault();
               CustomEditor.insertDiagnosis(editor);
+            }}
+          />
+        </Tooltip>
+
+        <Tooltip title="Add table">
+          <Button
+            type="primary"
+            shape="circle"
+            icon={<TableOutlined />}
+            onMouseDown={(event) => {
+              event.preventDefault();
+              CustomEditor.insertTable(editor);
             }}
           />
         </Tooltip>

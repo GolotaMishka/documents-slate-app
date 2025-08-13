@@ -28,3 +28,23 @@ a:hover {
 .active-link {
   font-weight: bold;
 }
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  /* merge cell borders */
+  font-family: Arial, sans-serif;
+}
+
+thead {
+  background-color: #f4f4f4;
+}
+
+th,
+td {
+  border: 1px solid #ddd;
+  /* light gray border */
+  padding: 8px 12px;
+  /* space inside cells */
+  text-align: left;
+}

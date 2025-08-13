@@ -1,42 +1,47 @@
-import React, { FC } from 'react'
-import { Editable,ReactEditor, Slate, useFocused, useSelected, useSlateStatic, useReadOnly } from 'slate-react'
-import {
-  Transforms,
-} from 'slate'
-import Paragraph from './components/Paragraph';
-import Checkbox from './components/Checkbox';
-import Select from './components/Select';
-import DiagnosisElement from './components/DiagnosisElement';
-import TextField from './components/TextField';
-import RadioGroup from './components/RadioGroup';
-import RadioOption from './components/RadioGroup/components/RadioOption';
-import TextFieldValue from './components/TextField/components/TextFieldValue';
-import Label from './components/TextField/components/Label';
+import React, { FC } from "react";
+import { useSelected } from "slate-react";
+import Paragraph from "./components/Paragraph";
+import Checkbox from "./components/Checkbox";
+import Select from "./components/Select";
+import DiagnosisElement from "./components/DiagnosisElement";
+import Table from "./components/Table";
+import TableRow from "./components/Table/components/TableRow";
+import TableCell from "./components/Table/components/TableCell";
+import TextField from "./components/TextField";
+import RadioGroup from "./components/RadioGroup";
+import RadioOption from "./components/RadioGroup/components/RadioOption";
+import TextFieldValue from "./components/TextField/components/TextFieldValue";
+import Label from "./components/TextField/components/Label";
 
-type TCustomElementProps = {
-}
+type TCustomElementProps = {};
 
-
-const DefaultElement = props => {
+const DefaultElement = (props) => {
   const selected = useSelected();
-  return <span {...props.attributes} style={{
-    ...(selected && { border: '2px solid blue' }),
-    marginRight: '15px'
-  }}>{props.children}</span>
-}
+  return (
+    <span
+      {...props.attributes}
+      style={{
+        ...(selected && { border: "2px solid blue" }),
+        marginRight: "15px",
+      }}
+    >
+      {props.children}
+    </span>
+  );
+};
 
 const CustomElement: FC<TCustomElementProps> = (props) => {
   const { element } = props;
   switch (element.type) {
-    case 'paragraph':
-        return <Paragraph {...props} />
-    case 'checkbox':
-      return <Checkbox {...props} />
+    case "paragraph":
+      return <Paragraph {...props} />;
+    case "checkbox":
+      return <Checkbox {...props} />;
     case "text-field":
-      return <TextField {...props} />
+      return <TextField {...props} />;
 
     case "label":
-      return <Label {...props}  />
+      return <Label {...props} />;
 
     case "text-field-value":
       return <TextFieldValue {...props} />;
@@ -52,9 +57,16 @@ const CustomElement: FC<TCustomElementProps> = (props) => {
     case "diagnosis":
       return <DiagnosisElement {...props} />;
 
-      default:
-        return <DefaultElement {...props} />
-  }
-}
+    case "table":
+      return <Table {...props} />;
+    case "table-row":
+      return <TableRow {...props} />;
+    case "table-cell":
+      return <TableCell {...props} />;
 
-export default CustomElement
+    default:
+      return <DefaultElement {...props} />;
+  }
+};
+
+export default CustomElement;
