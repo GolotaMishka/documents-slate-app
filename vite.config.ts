@@ -9,7 +9,7 @@ const __dirname = path.dirname(__filename)
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: '/documents-slate-app/', // 👈 Replace with your repo name
+  base: '/slate-app/', // 👈 Replace with your repo name
   resolve: {
     alias: {
       '@pages': path.resolve(__dirname, 'src/app/pages'),
