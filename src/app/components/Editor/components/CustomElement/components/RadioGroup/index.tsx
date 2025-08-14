@@ -1,8 +1,8 @@
-import React, { FC } from "react";
-import type { RenderElementProps } from "slate-react";
+import type { FC } from "react";
 import styles from "./RadioGroup.module.scss";
+import type { RenderElementPropsFor, RadioGroupElement } from '@types';
 
-const RadioGroup: FC<RenderElementProps> = ({
+const RadioGroup: FC<RenderElementPropsFor<RadioGroupElement>> = ({
   attributes,
   children,
 }) => {

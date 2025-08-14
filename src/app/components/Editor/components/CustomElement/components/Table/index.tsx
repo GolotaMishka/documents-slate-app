@@ -1,18 +1,18 @@
-import React, { FC } from "react";
-import type { RenderElementProps } from "slate-react";
+import type { FC } from "react";
 import { ReactEditor, useSlateStatic } from "slate-react";
 import { Transforms } from "slate";
 // import styles from './Table.module.scss';
 import { Button } from "antd";
 import { PlusOutlined, MinusOutlined } from "@ant-design/icons";
 import { Tooltip } from "antd";
-
-const Table: FC<RenderElementProps> = ({ attributes, children, element }) => {
+import type { RenderElementPropsFor, TableElement } from '@types';
+import type { TableRowElement } from '@types';
+const Table: FC<RenderElementPropsFor<TableElement>> = ({ attributes, children, element }) => {
   const editor = useSlateStatic();
   const path = ReactEditor.findPath(editor, element);
 
   const addRow = () => {
-    const newRow = {
+    const newRow: TableRowElement = {
       type: "table-row",
       children: element.children[0].children.map(() => ({
         type: "table-cell",

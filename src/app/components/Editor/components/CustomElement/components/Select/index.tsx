@@ -1,16 +1,16 @@
-import React, { FC } from "react";
+import type { FC } from "react";
 import { ReactEditor, useSlateStatic } from "slate-react";
 import { Transforms } from "slate";
-import type { RenderElementProps } from "slate-react";
 import styles from "./Select.module.scss";
+import type { RenderElementPropsFor, SelectElement } from '@types';
 
-const Select: FC<RenderElementProps> = ({ attributes, children, element }) => {
+const Select: FC<RenderElementPropsFor<SelectElement>> = ({ attributes, children, element }) => {
   const { value, name, options } = element;
   const editor = useSlateStatic();
 
   const onChange = (event) => {
     const path = ReactEditor.findPath(editor, element);
-    const newProperties = {
+    const newProperties: Partial<SelectElement> = {
       value: event?.target?.value,
     };
     Transforms.setNodes(editor, newProperties, { at: path });

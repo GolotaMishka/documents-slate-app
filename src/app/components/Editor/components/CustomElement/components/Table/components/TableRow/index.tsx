@@ -1,8 +1,7 @@
-import React, { FC } from 'react'
-import type { RenderElementProps } from 'slate-react';
-// import styles from './Table.module.scss';
+import type { FC } from 'react'
+import type { RenderElementPropsFor, TableRowElement } from '@types';
 
-const TableRow: FC<RenderElementProps> = ({ attributes, children }) => {
+const TableRow: FC<RenderElementPropsFor<TableRowElement>> = ({ attributes, children }) => {
   return <tr {...attributes}>{children}</tr>
 }
 

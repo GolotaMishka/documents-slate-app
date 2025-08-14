@@ -1,32 +1,25 @@
-import React, { FC } from "react";
-import { ReactEditor, useSlateStatic } from "slate-react";
+import type { FC } from "react";
+import { useSlateStatic } from "slate-react";
 import { Transforms } from "slate";
-import type { RenderElementProps } from "slate-react";
-import DiagnosisSelect from "../../../../../DiagnosisSelect";
+import DiagnosisSelect from "@components/DiagnosisSelect";
 import styles from "./Diagnosis.module.scss";
+import type { RenderElementPropsFor, DiagnosisElement, Option, DefaultElement } from '@types';
 
-const Diagnosis: FC<RenderElementProps> = ({ attributes, children, element }) => {
+const Diagnosis: FC<RenderElementPropsFor<DiagnosisElement>> = ({ attributes, children }) => {
   const editor = useSlateStatic();
 
-  const onSelect = ({ code, name }) => {
-    console.log({ event });
-    // const path = ReactEditor.findPath(editor, element);
-    // const newProperties = {
-    //   value: event?.target?.value,
-    // };
-    // Transforms.setNodes(editor, newProperties, { at: path });
-    const newNode = [
+  const onSelect = (option?: Option) => {
+    const newNode: DefaultElement[] = [
     {
       type: "default",
-      children: [{ text: name }],
+      children: [{ text: option?.name as string }],
     },
      {
       type: "default",
-      children: [{ text: code }],
+      children: [{ text: option?.code as string }],
     },
     ]
     Transforms.insertNodes(editor, newNode, { at: [editor.children.length] })
-
   };
 
   return (

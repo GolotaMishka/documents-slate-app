@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Select } from 'antd';
-
-type Option = { code: string; name: string };
+import type { Option } from '@types';
 
 type DiagnosisSelectProps = {
   label?: string;
@@ -17,12 +16,12 @@ export default function DiagnosisSelect({
   onSelect,
   debounceTime = 300,
 }: DiagnosisSelectProps) {
-  const [term, setTerm] = useState('');
+  const [search, setSearch] = useState('');
   const [options, setOptions] = useState<Option[]>([]);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!term.trim()) {
+    if (!search.trim()) {
       setOptions([]);
       return;
     }
@@ -30,7 +29,7 @@ export default function DiagnosisSelect({
     const timer = setTimeout(() => {
       setLoading(true);
       const params = new URLSearchParams({
-        terms: term,
+        terms: search,
         sf: 'code,name',
         df: 'code,name',
         maxList: '10',
@@ -57,13 +56,13 @@ export default function DiagnosisSelect({
     }, debounceTime);
 
     return () => clearTimeout(timer);
-  }, [term, debounceTime]);
+  }, [search, debounceTime]);
 
   return (
     <Select
         showSearch
-        searchValue={term}
-        onSearch={setTerm}
+        searchValue={search}
+        onSearch={setSearch}
         placeholder={placeholder}
         loading={loading}
         optionFilterProp="name"

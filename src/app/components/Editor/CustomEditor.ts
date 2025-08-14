@@ -1,25 +1,26 @@
-import { Editor as SlateEditor, Transforms, Element } from "slate";
+import { Editor as SlateEditor, Transforms } from "slate";
+import type {
+  ParagraphElement,
+  TextFieldElement,
+  CheckboxElement,
+  RadioGroupElement,
+  SelectElement,
+  DiagnosisElement,
+  TableElement,
+} from "@types";
 
 const CustomEditor = {
-  isBoldMarkActive(editor) {
+  isBoldMarkActive(editor: SlateEditor) {
     const marks = SlateEditor.marks(editor);
     return marks ? marks.bold === true : false;
   },
 
-  isItalicMarkActive(editor) {
+  isItalicMarkActive(editor: SlateEditor) {
     const marks = SlateEditor.marks(editor);
     return marks ? marks.italic === true : false;
   },
 
-  isCodeBlockActive(editor) {
-    const [match] = SlateEditor.nodes(editor, {
-      match: (n) => n.type === "code",
-    });
-
-    return !!match;
-  },
-
-  toggleBoldMark(editor) {
+  toggleBoldMark(editor: SlateEditor) {
     const isActive = CustomEditor.isBoldMarkActive(editor);
     if (isActive) {
       SlateEditor.removeMark(editor, "bold");
@@ -28,7 +29,7 @@ const CustomEditor = {
     }
   },
 
-  toggleItalicMark(editor) {
+  toggleItalicMark(editor: SlateEditor) {
     const isActive = CustomEditor.isItalicMarkActive(editor);
     if (isActive) {
       SlateEditor.removeMark(editor, "italic");
@@ -37,30 +38,16 @@ const CustomEditor = {
     }
   },
 
-  toggleCodeBlock(editor) {
-    const isActive = CustomEditor.isCodeBlockActive(editor);
-    Transforms.setNodes(
-      editor,
-      { type: isActive ? null : "code" },
-      { match: (n) => Element.isElement(n) && SlateEditor.isBlock(editor, n) }
-    );
-  },
-
-  toggleVoid(editor) {
-    SlateEditor.addMark(editor, "isVoid", true);
-  },
-
-  insertParagraph(editor) {
-    const text = { text: "Text" };
-    const newNode = {
+  insertParagraph(editor: SlateEditor) {
+    const newNode: ParagraphElement = {
       type: "paragraph",
-      children: [text],
+      children: [{ text: "Text" }],
     };
     Transforms.insertNodes(editor, newNode, { at: [editor.children.length] });
   },
 
-  insertLabelValue(editor) {
-    const newNode = {
+  insertTextField(editor: SlateEditor) {
+    const newNode: TextFieldElement = {
       type: "text-field",
       children: [
         { type: "label", children: [{ text: "New label", bold: true }] },
@@ -69,8 +56,9 @@ const CustomEditor = {
     };
     Transforms.insertNodes(editor, newNode, { at: [editor.children.length] });
   },
-  insertCheckbox(editor) {
-    const newNode = {
+
+  insertCheckbox(editor: SlateEditor) {
+    const newNode: CheckboxElement = {
       type: "checkbox",
       checked: true,
       children: [{ text: "Agree" }],
@@ -78,9 +66,9 @@ const CustomEditor = {
 
     Transforms.insertNodes(editor, newNode, { at: [editor.children.length] });
   },
-  insertRadio(editor) {
+  insertRadio(editor: SlateEditor) {
     const name = "group" + Math.floor(Math.random() * 1000);
-    const newNode = {
+    const newNode: RadioGroupElement = {
       type: "radio-group",
       children: [
         {
@@ -113,12 +101,11 @@ const CustomEditor = {
     Transforms.insertNodes(editor, newNode, { at: [editor.children.length] });
   },
 
-  insertSelect(editor) {
+  insertSelect(editor: SlateEditor) {
     const name = "select" + Math.floor(Math.random() * 1000);
-    const newNode = {
+    const newNode: SelectElement = {
       type: "select",
       name,
-      // value: 'v2',
       options: [
         { value: "v1", label: "Label 1" },
         { value: "v2", label: "Label 2" },
@@ -132,8 +119,8 @@ const CustomEditor = {
     Transforms.insertNodes(editor, newNode, { at: [editor.children.length] });
   },
 
-  insertDiagnosis(editor) {
-    const newNode = {
+  insertDiagnosis(editor: SlateEditor) {
+    const newNode: DiagnosisElement = {
       type: "diagnosis",
       children: [
         {
@@ -146,8 +133,8 @@ const CustomEditor = {
     Transforms.insertNodes(editor, newNode, { at: [editor.children.length] });
   },
 
-  insertTable(editor) {
-    const newNode = {
+  insertTable(editor: SlateEditor) {
+    const newNode: TableElement = {
       type: "table",
       children: [
         {

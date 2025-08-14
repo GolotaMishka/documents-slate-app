@@ -1,21 +1,24 @@
-
-import { Routes, Route, NavLink } from 'react-router-dom';
-import Admin from './pages/Admin';
-import Doctor from './pages/Doctor';
-
+import { Routes, Route, NavLink } from "react-router-dom";
+import Admin from "@pages/Admin";
+import Doctor from "@pages/Doctor";
 
 function App() {
   return (
     <div>
       <nav>
-        <NavLink 
+        <NavLink
           to="/"
-          className={({ isActive }) => (isActive ? 'active-link' : '')}
-        >Admin</NavLink> |{" "}
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          Admin
+        </NavLink>{" "}
+        |{" "}
         <NavLink
           to="/doctor"
-          className={({ isActive }) => (isActive ? 'active-link' : '')}
-        >Doctor</NavLink>
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
+          Doctor
+        </NavLink>
       </nav>
 
       <Routes>
@@ -26,4 +29,4 @@ function App() {
   );
 }
 
-export default App
+export default App;

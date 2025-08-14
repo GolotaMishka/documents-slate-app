@@ -1,12 +1,13 @@
-import Editor, { EDITOR_MODE } from '../../components/Editor';
+import Editor from "@components/Editor";
+import { EDITOR_MODE } from "@types";
 
 function Doctor() {
   return (
     <div>
       <h1>Doctor</h1>
       <Editor mode={EDITOR_MODE.FILL} />
-      </div>
-  )
+    </div>
+  );
 }
 
-export default Doctor
+export default Doctor;

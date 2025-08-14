@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { useSelected } from 'slate-react'
-import type { RenderElementProps } from 'slate-react';
 import classNames from 'classnames';
 import styles from './Paragraph.module.scss';
+import type { RenderElementPropsFor, ParagraphElement } from '@types';
 
-const Paragraph: FC<RenderElementProps> = ({ attributes, children }) => {
+const Paragraph: FC<RenderElementPropsFor<ParagraphElement>> = ({ attributes, children }) => {
   const selected = useSelected();
 
   return (

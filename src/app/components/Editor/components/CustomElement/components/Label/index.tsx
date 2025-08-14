@@ -1,10 +1,10 @@
-import React, { FC } from 'react'
+import type { FC } from 'react'
 import { useSelected } from 'slate-react'
-import type { RenderElementProps } from 'slate-react';
 import classNames from 'classnames';
 import styles from './Label.module.scss';
+import type { RenderElementPropsFor, LabelElement } from '@types';
 
-const Label: FC<RenderElementProps> = ({ attributes, children }) => {
+const Label: FC<RenderElementPropsFor<LabelElement>> = ({ attributes, children }) => {
   const selected = useSelected();
 
   return (

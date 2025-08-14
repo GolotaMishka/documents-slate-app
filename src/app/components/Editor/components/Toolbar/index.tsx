@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import type { FC } from 'react';
 import CustomEditor from "../../CustomEditor";
 import { Button } from "antd";
 import {
@@ -14,9 +14,9 @@ import {
 } from "@ant-design/icons";
 import styles from "./Toolbar.module.scss";
 import { Tooltip } from "antd";
-
+import type { CustomEditor as TCustomEditor } from '@types';
 type TToolbarProps = {
-  editor: any;
+  editor: TCustomEditor;
 };
 
 const Toolbar: FC<TToolbarProps> = ({ editor }) => {
@@ -62,7 +62,7 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
             icon={<FileTextOutlined />}
             onMouseDown={(event) => {
               event.preventDefault();
-              CustomEditor.insertLabelValue(editor);
+              CustomEditor.insertTextField(editor);
             }}
           />
         </Tooltip>

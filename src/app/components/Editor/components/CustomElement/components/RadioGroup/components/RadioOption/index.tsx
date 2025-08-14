@@ -1,10 +1,10 @@
-import React, { FC } from "react";
+import type { FC } from "react";
 import { Transforms, Node } from "slate";
 import { useSlateStatic, ReactEditor } from "slate-react";
-import type { RenderElementProps } from "slate-react";
 import styles from "./RadioOption.module.scss";
+import type { RenderElementPropsFor, RadioOptionElement } from '@types';
 
-const RadioOption: FC<RenderElementProps> = ({
+const RadioOption: FC<RenderElementPropsFor<RadioOptionElement>> = ({
   attributes,
   children,
   element,

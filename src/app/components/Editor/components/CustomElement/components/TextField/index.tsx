@@ -1,8 +1,8 @@
-import React, { FC } from 'react'
-import type { RenderElementProps } from 'slate-react';
+import type { FC } from 'react'
 import styles from './TextField.module.scss';
+import type { RenderElementPropsFor, TextFieldElement } from '@types';
 
-const TextField: FC<RenderElementProps> = ({ attributes, children }) => {
+const TextField: FC<RenderElementPropsFor<TextFieldElement>> = ({ attributes, children }) => {
   return (
   <p {...attributes} className={styles.textField}>
     {children}

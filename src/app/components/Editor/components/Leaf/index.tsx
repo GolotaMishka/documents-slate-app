@@ -1,6 +1,6 @@
-type TLeafProps = {}
+import type { RenderLeafProps} from 'slate-react';
 
-const Leaf = props => {
+const Leaf = (props: RenderLeafProps) => {
   return (
     <span
       {...props.attributes}
@@ -8,7 +8,6 @@ const Leaf = props => {
         fontWeight: props.leaf.bold ? 'bold' : 'normal',
         fontStyle: props.leaf.italic ? 'italic' : 'normal'
       }}
-      contentEditable={!props.leaf.isVoid}
     >
       {props.children}
     </span>
