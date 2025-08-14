@@ -8,7 +8,7 @@ const Select: FC<RenderElementPropsFor<SelectElement>> = ({ attributes, children
   const { value, name, options } = element;
   const editor = useSlateStatic();
 
-  const onChange = (event) => {
+  const onChange = (event: any) => {
     const path = ReactEditor.findPath(editor, element);
     const newProperties: Partial<SelectElement> = {
       value: event?.target?.value,

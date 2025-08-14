@@ -21,11 +21,13 @@ const RadioOption: FC<RenderElementPropsFor<RadioOptionElement>> = ({
     const groupPath = currentPath.slice(0, -1);
     const groupNode = Node.get(editor, groupPath);
 
+    // @ts-expect-error
     if (groupNode && groupNode.type === "radio-group") {
       groupNode.children.forEach((opt) => {
         const optPath = ReactEditor.findPath(editor, opt);
         Transforms.setNodes(
           editor,
+              // @ts-expect-error
           { checked: opt.id === element.id },
           { at: optPath }
         );
