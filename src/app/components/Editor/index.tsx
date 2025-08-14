@@ -17,7 +17,7 @@ type TEditorProps = {
     mode: EDITOR_MODE
 }
 
-const INITIAL_VALUE: Descendant[] = [];
+const INITIAL_VALUE: Descendant[] = [{ type: 'paragraph', children: [{ text: '' }]}];
 
 const Editor: FC<TEditorProps> = ({ mode }) => {
   const editor = useMemo(() => withHistory(withReact(createEditor())) as CustomEditor,[])
@@ -47,6 +47,7 @@ const Editor: FC<TEditorProps> = ({ mode }) => {
       >
         <Editable
           onKeyDown={event => {
+            // event.preventDefault(); // stop new block creation
             if (event.key === "Enter") event.preventDefault(); // stop new block creation
           }}
           renderElement={renderElement}
