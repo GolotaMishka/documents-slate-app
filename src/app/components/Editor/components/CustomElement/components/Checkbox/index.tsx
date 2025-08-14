@@ -1,17 +1,17 @@
 import type { FC } from "react";
-import { ReactEditor, useSlateStatic, useReadOnly } from "slate-react";
+import { ReactEditor, useSlateStatic } from "slate-react";
 import { Transforms } from "slate";
 import styles from "./Checkbox.module.scss";
 import type { RenderElementPropsFor, CheckboxElement } from '@types';
 
-const Checkbox: FC<RenderElementPropsFor<CheckboxElement>> = ({
+const Checkbox: FC<RenderElementPropsFor<CheckboxElement> & { isFillMode: boolean }> = ({
   attributes,
   children,
   element,
+  isFillMode,
 }) => {
   const { checked } = element;
   const editor = useSlateStatic();
-  const readOnly = useReadOnly();
 
   const onChange = (event) => {
     const path = ReactEditor.findPath(editor, element);
@@ -24,7 +24,7 @@ const Checkbox: FC<RenderElementPropsFor<CheckboxElement>> = ({
   return (
     <div {...attributes} className={styles.checkbox}>
       <span
-        contentEditable={!readOnly}
+        contentEditable={!isFillMode}
         suppressContentEditableWarning
         className={styles.checkboxLabel}
       >

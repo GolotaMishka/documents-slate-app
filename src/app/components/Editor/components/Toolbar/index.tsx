@@ -1,4 +1,4 @@
-import type { FC } from 'react';
+import type { FC } from "react";
 import CustomEditor from "../../CustomEditor";
 import { Button } from "antd";
 import {
@@ -10,16 +10,17 @@ import {
   FileTextOutlined,
   CaretDownOutlined,
   HeartOutlined,
-  TableOutlined
+  TableOutlined,
 } from "@ant-design/icons";
 import styles from "./Toolbar.module.scss";
 import { Tooltip } from "antd";
-import type { CustomEditor as TCustomEditor } from '@types';
+import type { CustomEditor as TCustomEditor } from "@types";
 type TToolbarProps = {
   editor: TCustomEditor;
+  isFillMode: boolean;
 };
 
-const Toolbar: FC<TToolbarProps> = ({ editor }) => {
+const Toolbar: FC<TToolbarProps> = ({ editor, isFillMode }) => {
   return (
     <div className={styles.toolbar}>
       <div className={styles.toolbarActions}>
@@ -52,6 +53,7 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
               event.preventDefault();
               CustomEditor.insertParagraph(editor);
             }}
+            disabled={isFillMode}
           />
         </Tooltip>
 
@@ -64,6 +66,7 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
               event.preventDefault();
               CustomEditor.insertTextField(editor);
             }}
+            disabled={isFillMode}
           />
         </Tooltip>
 
@@ -76,6 +79,7 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
               event.preventDefault();
               CustomEditor.insertCheckbox(editor);
             }}
+            disabled={isFillMode}
           />
         </Tooltip>
 
@@ -88,6 +92,7 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
               event.preventDefault();
               CustomEditor.insertRadio(editor);
             }}
+            disabled={isFillMode}
           />
         </Tooltip>
 
@@ -100,6 +105,7 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
               event.preventDefault();
               CustomEditor.insertSelect(editor);
             }}
+            disabled={isFillMode}
           />
         </Tooltip>
         <Tooltip title="Add diagnosis">
@@ -111,6 +117,7 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
               event.preventDefault();
               CustomEditor.insertDiagnosis(editor);
             }}
+            disabled={isFillMode}
           />
         </Tooltip>
 
@@ -123,6 +130,7 @@ const Toolbar: FC<TToolbarProps> = ({ editor }) => {
               event.preventDefault();
               CustomEditor.insertTable(editor);
             }}
+            disabled={isFillMode}
           />
         </Tooltip>
       </div>

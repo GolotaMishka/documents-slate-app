@@ -30,15 +30,15 @@ import type {
   TableElement,
 } from "@types";
 
-const CustomElement: FC<RenderElementProps> = (props) => {
-  const { element } = props;
+const CustomElement: FC<RenderElementProps & { isFillMode: boolean }> = (props) => {
+  const { element, isFillMode } = props;
   switch (element.type) {
     case "paragraph":
       return (
         <Paragraph {...(props as RenderElementPropsFor<ParagraphElement>)} />
       );
     case "checkbox":
-      return <Checkbox {...(props as RenderElementPropsFor<CheckboxElement>)} />;
+      return <Checkbox {...(props as RenderElementPropsFor<CheckboxElement>)} isFillMode={isFillMode} />;
     case "text-field":
       return <TextField {...(props as RenderElementPropsFor<TextFieldElement>)} />;
     case "label":
@@ -54,7 +54,7 @@ const CustomElement: FC<RenderElementProps> = (props) => {
     case "diagnosis":
       return <Diagnosis {...(props as RenderElementPropsFor<DiagnosisElement>)} />;
     case "table":
-      return <Table {...(props as RenderElementPropsFor<TableElement>)} />;
+      return <Table {...(props as RenderElementPropsFor<TableElement>)} isFillMode={isFillMode} />;
     case "table-row":
       return <TableRow {...(props as RenderElementPropsFor<TableRowElement>)} />;
     case "table-cell":
