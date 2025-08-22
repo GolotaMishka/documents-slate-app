@@ -7,6 +7,7 @@ import type { RenderElementPropsFor, SelectElement } from '@types';
 const Select: FC<RenderElementPropsFor<SelectElement>> = ({ attributes, children, element }) => {
   const { value, name, options } = element;
   const editor = useSlateStatic();
+  const valueToDisplay = options.find(option => option.value === value)?.label || "Оберіть";
 
   const onChange = (event: any) => {
     const path = ReactEditor.findPath(editor, element);
@@ -24,7 +25,7 @@ const Select: FC<RenderElementPropsFor<SelectElement>> = ({ attributes, children
         suppressContentEditableWarning
         className={styles.selectValue}
       >
-        {value || "Оберіть"}
+        {valueToDisplay}
       </span>
       <select name={name} id={name} onChange={onChange} value={value}>
         {options.map((option) => (

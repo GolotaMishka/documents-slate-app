@@ -37,7 +37,7 @@ export type TextFieldElement = {
 export type CheckboxElement = {
   type: 'checkbox',
   checked: boolean,
-  children: [CustomText]
+  children: CustomText[]
 }
 
 export type RadioOptionElement = {
@@ -58,7 +58,7 @@ export type SelectElement = {
     name: string,
     value?: string,
     options: { value: string, label: string }[],
-    children: [LabelElement],
+    children: LabelElement[],
 }
 
 export type DiagnosisElement = {
@@ -69,7 +69,7 @@ export type DiagnosisElement = {
 
 export type TableCellElement = {
     type: "table-cell",
-    children: [CustomText],
+    children: (CheckboxElement|CustomText|SelectElement)[],
 }
 
 export type TableRowElement = {

@@ -5,7 +5,7 @@ import DiagnosisSelect from "@components/DiagnosisSelect";
 import styles from "./Diagnosis.module.scss";
 import type { RenderElementPropsFor, DiagnosisElement, Option, DefaultElement } from '@types';
 
-const Diagnosis: FC<RenderElementPropsFor<DiagnosisElement>> = ({ attributes, children }) => {
+const Diagnosis: FC<RenderElementPropsFor<DiagnosisElement>> = ({ attributes, children, element }) => {
   const editor = useSlateStatic();
 
   const onSelect = (option?: Option) => {

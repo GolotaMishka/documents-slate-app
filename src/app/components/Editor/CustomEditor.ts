@@ -7,6 +7,9 @@ import type {
   SelectElement,
   DiagnosisElement,
   TableElement,
+  Option, 
+  DefaultElement,
+  TableCellElement
 } from "@types";
 
 const CustomEditor = {
@@ -197,6 +200,60 @@ const CustomEditor = {
             {
               type: "table-cell",
               children: [{ text: "9" }],
+            },
+          ],
+        },
+      ],
+    };
+
+    Transforms.insertNodes(editor, newNode, { at: [editor.children.length] });
+  },
+
+  insertComplexTable(editor: SlateEditor) {
+    const generateHeaderCell = (title: string): TableCellElement => ({ type: "table-cell", children: [{ text: title, bold: true  }]  });
+    const agreementNode: CheckboxElement = {
+      type: "checkbox",
+      checked: true,
+      children: [],
+    };
+
+    const stateNode: SelectElement = {
+        type: "select",
+        name: "select" + Math.floor(Math.random() * 1000),
+        options: [
+          { value: "norm", label: "Нормальний" },
+          { value: "gread", label: "Чудовий" },
+          { value: "bad", label: "Поганий" },
+        ],
+        children: [],
+      };
+
+
+    const newNode: TableElement = {
+      type: "table",
+      children: [
+        {
+          type: "table-row",
+          children: [
+            generateHeaderCell('ПІБ'),
+            generateHeaderCell('Згода'),
+            generateHeaderCell('Стан'),
+          ],
+        },
+        {
+          type: "table-row",
+          children: [
+            {
+              type: "table-cell",
+              children: [{ text: "Іваненко В.В." }],
+            },
+            {
+              type: "table-cell",
+              children: [agreementNode],
+            },
+            {
+              type: "table-cell",
+              children: [stateNode],
             },
           ],
         },

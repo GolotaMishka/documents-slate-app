@@ -133,6 +133,19 @@ const Toolbar: FC<TToolbarProps> = ({ editor, isFillMode }) => {
             disabled={isFillMode}
           />
         </Tooltip>
+
+        <Tooltip title="Add complex table">
+          <Button
+            type="primary"
+            shape="circle"
+            icon={<TableOutlined color="black" style={{ color: 'black' }} />}
+            onMouseDown={(event) => {
+              event.preventDefault();
+              CustomEditor.insertComplexTable(editor);
+            }}
+            disabled={isFillMode}
+          />
+        </Tooltip>
       </div>
     </div>
   );

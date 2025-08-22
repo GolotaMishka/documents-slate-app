@@ -29,13 +29,16 @@ const Editor: FC<TEditorProps> = ({ mode }) => {
   const renderLeaf = useCallback((props: RenderLeafProps) => <Leaf {...props} />, [])
 
 
-  const onSave = () => {
-    const value = JSON.stringify(editor.children, null, 2);
+  const onSave = (data: object) => {
+    const value = JSON.stringify(data, null, 2);
     setContent(value);
     localStorage.setItem("content", value);
   }
 
-  const onClear = () => localStorage.removeItem('content');
+  const onClear = () => {
+    localStorage.removeItem('content');
+    window.location.reload();
+  }
 
   return (
     <div>
@@ -44,6 +47,7 @@ const Editor: FC<TEditorProps> = ({ mode }) => {
       <Slate 
         editor={editor} 
         initialValue={initialValue}
+        onChange={onSave}
       >
         <Editable
           onKeyDown={event => {
